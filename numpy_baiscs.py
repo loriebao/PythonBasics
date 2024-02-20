@@ -32,6 +32,35 @@ print( f'{M1}.{M2} {np.dot(M1, M2)} {M1.dtype} {M2.dtype} {M3.dtype}' )
 one_matrix = np.ones((6,4))
 print( f'{one_matrix} {np.ndim(one_matrix)} {np.shape(one_matrix)}' )   
    
-c = np.reshape(one_matrix, (2, 3, 4)) # 3d array
+c = np.reshape(one_matrix, (2, 3, 4)) # 3d array    
 print(c)
+print(c.dtype, c.shape, c.size)
+
+x = np.linspace(0, 2 * np.pi, 10).reshape(2,5)        # useful to evaluate function at lots of points
+print(x.dtype, x.shape, x.size)
+print(x)
+f = np.sin(x)
+print(f)
+
+def myfunc(x, y):
+    return np.sin(x+y)
+
+b = np.fromfunction(myfunc, (5,2), dtype=np.float64)
+print(b)
+print(b[:,0]) #each row in first column
+print(b[-1])   # the last row. Equivalent to b[-1, :]
+
+c = np.array([[[  0,  1,  2],  # a 3D array (two stacked 2D arrays)
+               [ 10, 12, 13]],
+              [[100, 101, 102],
+               [110, 112, 113]]])
+               
+print(c)
+
+print(c[1, ...])    # same as c[1, :, :] or c[1]
+print(c[..., 2])    # same as c[:, :, 2]
+
+
+
+
 
