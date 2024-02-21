@@ -36,7 +36,8 @@ c = np.reshape(one_matrix, (2, 3, 4)) # 3d array
 print(c)
 print(c.dtype, c.shape, c.size)
 
-x = np.linspace(0, 2 * np.pi, 10).reshape(2,5)        # useful to evaluate function at lots of points
+# -1 means auto cal the other dimension
+x = np.linspace(0, 2 * np.pi, 10).reshape(2,-1)        # useful to evaluate function at lots of points
 print(x.dtype, x.shape, x.size)
 print(x)
 f = np.sin(x)
@@ -49,18 +50,58 @@ b = np.fromfunction(myfunc, (5,2), dtype=np.float64)
 print(b)
 print(b[:,0]) #each row in first column
 print(b[-1])   # the last row. Equivalent to b[-1, :]
-
+# The reshape function returns its argument with a modified shape, 
+# whereas the ndarray.resize method modifies the array itself
 c = np.array([[[  0,  1,  2],  # a 3D array (two stacked 2D arrays)
                [ 10, 12, 13]],
               [[100, 101, 102],
                [110, 112, 113]]])
                
 print(c)
+print(f'c.shape {c.shape}')
+
+print(c.T)
+print(f'c.shape {c.shape}')
+
+c.resize((2, 6 ))
+print(c)
 
 print(c[1, ...])    # same as c[1, :, :] or c[1]
 print(c[..., 2])    # same as c[:, :, 2]
 
+print(f'c.flat {c.flat[:]}')
+for i in c.flat:
+    print(i, end = ' ')
 
+rg = np.random.default_rng(1)  # create instance of default random number generator
+a = np.floor(10 * rg.random((3, 4)))
+print(a)    
 
+#np.vstack((a, b))
+#np.hstack((a, b))   
+
+#Slicing an array returns a view of it:
+s = c[:, 1:3]
+s[:] = 10
+print(c)
+
+d = a.copy()  # a new array object with new data is created
+print(d is a)
+a = np.arange(int(1e8))
+b = a[:10].copy()
+del a  # the memory of ``a`` can be released.
+print(b)
+
+x = np.array([[1, 2], [3, 4]])
+m = np.asmatrix(x)
+print(x)
+print(m)
+
+#sorting:
+ss = np.array([[0, 3], [2, 2]])
+ind = np.argsort(s, axis=0)
+print(ss)   
+print(ind)  
+print(np.sort(ss, axis=0))
 
 
