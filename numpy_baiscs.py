@@ -104,4 +104,24 @@ print(ss)
 print(ind)  
 print(np.sort(ss, axis=0))
 
+print(np.sort_complex([1 + 2j, 2 - 1j, 3 - 2j, 3 - 3j, 3 + 5j]))
 
+x = [1, 2, 0]
+y = [4, 5, 6]
+print(np.cross(x, y))
+x = [1, 2]
+y = [4, 5]
+print(np.cross(x, y))
+
+print('dot product and matrix product')
+a = np.ones([1, 2])
+c = np.ones([2, 3])
+print(f'a {a}')
+print(f'c {c}')   
+ac = np.dot(a, c) 
+print(f'dot {ac.shape} {ac}')
+mm = np.matmul(a, c)
+print(f'mat {mm.shape} {mm}')
+print(f'@ {a @ c}')
+
+#numpy.tensordot(a, b, axes=2)
