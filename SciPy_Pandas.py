@@ -4,6 +4,35 @@ import matplotlib.pyplot as plt
 
 from scipy import linalg, optimize, special
 
+"""
+
+"""
+# Generate data
+x = np.linspace(0, 2*np.pi, 100)
+y1, y2 = np.sin(x), np.cos(x)
+ 
+# fig, axes = plt.subplots()
+# axes.plot(x, y1, label='Sin(x)', color='b')
+# axes.plot(x, y2, label='Cos(x)', color='r', linestyle='--')
+
+# plt.legend()
+# plt.show()
+
+# # Plotting multiple lines on a single plot
+plt.plot(x, y1, label='Sin(x)', color='b')
+plt.plot(x, y2, label='Cos(x)', color='r', linestyle='--')
+ 
+# # Adding labels and title
+plt.xlabel('X - 0~2pi')
+plt.ylabel('Y - sin/cos')
+plt.title('Multiple Lines Plot')
+ 
+# # Displaying the legend and the plot
+plt.legend()
+plt.show()
+
+
+
 #Bessel functions are a family of solutions to Bessel’s differential equation with real or complex order alpha:
 #Among other uses, these functions arise in wave propagation problems, such as the vibrational modes of a thin drum head.
 #Here is an example of a circular drum head anchored at the edge:
@@ -39,8 +68,11 @@ def bessel_eq(n: int, k: float, distance: float, angle: float, t: float) -> floa
     print(kth_zero)
     return np.cos(t) * np.cos(n*angle) * special.jn(n, distance*kth_zero)
 
-kth_zero = special.jn_zeros(2, 5)
-print(f'{kth_zero} {type(kth_zero)} {kth_zero[-1]}')
+# kth_zero = special.jn_zeros(3, 4)
+# print(np.round(kth_zero, decimals=4))
+# np.set_printoptions(precision=4)  
+# print(f'{kth_zero} {type(kth_zero)} {kth_zero[-1]}')
+
 
 j3_roots = special.jn_zeros(3, 4)
 xmax = 18
