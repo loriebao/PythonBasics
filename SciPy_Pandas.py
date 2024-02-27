@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from scipy import linalg, optimize, special
 
 """
-
+Matplotlib is an open-source library for plotting data. Example 1: simple plot of a sinusoidal function.
 """
 # Generate data
 x = np.linspace(0, 2*np.pi, 100)
@@ -33,12 +33,39 @@ plt.show()
 
 
 
-#Bessel functions are a family of solutions to Bessel’s differential equation with real or complex order alpha:
-#Among other uses, these functions arise in wave propagation problems, such as the vibrational modes of a thin drum head.
-#Here is an example of a circular drum head anchored at the edge:
+"""
+example 2: Plotting the Bessel function of a given order and wavenumber.
+Bessel functions are a family of solutions to Bessel’s differential equation with real or complex order.
+Among other uses, these functions arise in wave propagation problems.
 
 """
-The selected code is a function that calculates the Bessel function, which is a solution to Bessel's differential equation. 
+# kth_zero = special.jn_zeros(3, 4)
+# print(np.round(kth_zero, decimals=4))
+# np.set_printoptions(precision=4)  
+# print(f'{kth_zero} {type(kth_zero)} {kth_zero[-1]}')
+
+j3_roots = special.jn_zeros(3, 4)
+xmax = 18
+xmin = -1
+x = np.linspace(xmin, xmax, 500)
+y = special.bessel(3, x)
+
+fig, ax = plt.subplots()
+ax.plot(x, y, label=r'$J_3$')
+ax.scatter(j3_roots, np.zeros((4, )), s=30, c='r',
+           label=r"$J_3$_Zeros", zorder=5)
+ax.scatter(0, 0, s=30, c='k',
+           label=r"Root at 0", zorder=5)
+ax.hlines(0, 0, xmax, color='k')
+ax.set_xlim(xmin, xmax)
+plt.legend()
+plt.show()
+
+
+"""
+example 3: an example of a circular drum head anchored at the edge
+
+Define a function that calculates the Bessel function, which is a solution to Bessel's differential equation. 
 The function takes five arguments: n, k, distance, angle, and t.
 n: The order of the Bessel function.
 k: The wavenumber, or the number of waves per unit length.
@@ -65,26 +92,6 @@ def bessel_eq(n: int, k: float, distance: float, angle: float, t: float) -> floa
     #calculates the kth zero of the Bessel function using the special.jn_zeros function from SciPy
     #This returns an array of zeros, and the last element of the array is taken as the kth zero.
     kth_zero = special.jn_zeros(n, k)[-1]
-    print(kth_zero)
     return np.cos(t) * np.cos(n*angle) * special.jn(n, distance*kth_zero)
 
-# kth_zero = special.jn_zeros(3, 4)
-# print(np.round(kth_zero, decimals=4))
-# np.set_printoptions(precision=4)  
-# print(f'{kth_zero} {type(kth_zero)} {kth_zero[-1]}')
 
-
-j3_roots = special.jn_zeros(3, 4)
-xmax = 18
-xmin = -1
-x = np.linspace(xmin, xmax, 500)
-fig, ax = plt.subplots()
-ax.plot(x, special.jn(3, x), label=r'$J_3$')
-ax.scatter(j3_roots, np.zeros((4, )), s=30, c='r',
-           label=r"$J_3$_Zeros", zorder=5)
-ax.scatter(0, 0, s=30, c='k',
-           label=r"Root at 0", zorder=5)
-ax.hlines(0, 0, xmax, color='k')
-ax.set_xlim(xmin, xmax)
-plt.legend()
-plt.show()

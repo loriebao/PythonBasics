@@ -17,6 +17,37 @@ def fib2(n, fn=[]):
         fn.append(fn[i-1] + fn[i-2])
     return fn
 
+"""
+run code with "python .\fibo.py 30"
+30
+recursive fib took 1.40322 seconds
+iterative fib took 2.44e-05 seconds
+recursive fib took 1.403225 seconds
+iterative fib took 0.000024 seconds
+"""
+def main():
+    import timeit
+    import sys
+    import functools
+
+    n = int(sys.argv[1])
+    print(n)
+    ret_array = []
+
+    time_fib = timeit.timeit(functools.partial(fib, n), number=10)
+    time_fib2 = timeit.timeit(functools.partial(fib2, n, ret_array), number=10)
+
+    print("recursive fib took {:.6} seconds".format(time_fib))
+    print("iterative fib took {:.6} seconds".format(time_fib2))
+
+    print("recursive fib took %.6f seconds" % time_fib)
+    print("iterative fib took %.6f seconds" % time_fib2)
+
+
+if __name__ == "__main__":
+    main()
+
+
 def user_prompt(prompt, retries=4, reminder="Please try again"):
     """Document your function purpose
 
