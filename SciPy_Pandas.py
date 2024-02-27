@@ -62,8 +62,32 @@ plt.legend()
 plt.show()
 
 
+"""Example 3: A rectangular step function on [0, 1] and Ramp function on [-1, 1]:
 """
-example 3: an example of a circular drum head anchored at the edge
+def step(x):
+    return 0.5*(np.sign(x) + np.sign(1 - x))
+def ramp(x):
+    return np.maximum(0, x)
+
+x = np.linspace(-6, 6, 100)
+y1 = step(x)
+y2 = ramp(x)
+plt.plot(x, y1, label='Step Func', color='g')
+plt.plot(x, y2, label='Ramp Func', color='r')
+
+# # Adding labels and title
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Step and Ramp Function Plot')
+ 
+# # Displaying the legend and the plot
+plt.legend()
+plt.show()
+
+
+
+"""
+example 4 TBC: an example of a circular drum head anchored at the edge
 
 Define a function that calculates the Bessel function, which is a solution to Bessel's differential equation. 
 The function takes five arguments: n, k, distance, angle, and t.
