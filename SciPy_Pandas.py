@@ -48,7 +48,7 @@ j3_roots = special.jn_zeros(3, 4)
 xmax = 18
 xmin = -1
 x = np.linspace(xmin, xmax, 500)
-y = special.bessel(3, x)
+y = special.jn(3, x)
 
 fig, ax = plt.subplots()
 ax.plot(x, y, label=r'$J_3$')
